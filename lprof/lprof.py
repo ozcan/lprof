@@ -74,7 +74,7 @@ def profile(func):
     for node in ast.walk(function):
         
         if (type(node) == ast.Return):
-            new_return = ast.parse("return _lprof_tick('%d', return_val=1)" % node.lineno).body[0]
+            new_return = ast.parse("return _lprof_tick(%d, return_val=1)" % node.lineno).body[0]
             new_return.value.keywords[0].value = node.value
             node.value = new_return.value
 
@@ -90,7 +90,7 @@ def profile(func):
                 new_body.append(entry)
 
                 if 'lineno' in entry.__dict__ and entry.lineno not in lines:
-                    new_body.extend(ast.parse("_lprof_tick('%d')" % entry.lineno).body)
+                    new_body.extend(ast.parse("_lprof_tick(%d)" % entry.lineno).body)
 
                 lines.add(entry.lineno)
 
@@ -121,13 +121,12 @@ def dump_perf_stats():
                     nextfirstline = None
 
                 if nextfirstline:
-                    lastline = max([int(i) for i in _lprof_stats[fname].keys() if int(i) < nextfirstline])
+                    lastline = max([i for i in _lprof_stats[fname].keys() if i < nextfirstline])
                 else:
-                    lastline = max(map(int, _lprof_stats[fname].keys()))
+                    lastline = max(_lprof_stats[fname].keys())
 
                 for lineno in range(firstline, lastline + 1):
-                    lineno = str(lineno)
-                    print(format(int(lineno), '5d'), '\t', end='')
+                    print(format(lineno, '5d'), '\t', end='')
 
                     if lineno in _lprof_stats[fname]:
                         print(format(_lprof_stats[fname][lineno]['hits'], '6d'), '\t', end='')
@@ -135,7 +134,7 @@ def dump_perf_stats():
                     else:
                         print('     0\t', end='')
                         print('0.00000000\t', end='')
-                    print(content[int(lineno)-1].rstrip(), '\t', end='\n')
+                    print(content[lineno-1].rstrip(), '\t', end='\n')
 
                 print('')
 

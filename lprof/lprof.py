@@ -125,7 +125,7 @@ def dump_perf_stats():
                 else:
                     lastline = max(map(int, _lprof_stats[fname].keys()))
 
-                for lineno in range(firstline, lastline):
+                for lineno in range(firstline, lastline + 1):
                     lineno = str(lineno)
                     print(format(int(lineno), '5d'), '\t', end='')
 

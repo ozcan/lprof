@@ -46,7 +46,7 @@ def pre_function_hook():
                 sys.modules[__name__]._lprof_stats[_lprof_function_file][lineno] = {'hits': 0, 'time': 0}
 
             sys.modules[__name__]._lprof_stats[_lprof_function_file][lineno]['hits'] += 1
-            sys.modules[__name__]._lprof_stats[_lprof_function_file][lineno]['time'] += perf_counter() - sys.modules[__name__]._lprof_timers[_lprof_function_file][_lprof_process_id][_lprof_thread_id]
+            sys.modules[__name__]._lprof_stats[_lprof_function_file][lineno]['time'] += current_time - sys.modules[__name__]._lprof_timers[_lprof_function_file][_lprof_process_id][_lprof_thread_id]
             sys.modules[__name__]._lprof_timers[_lprof_function_file][_lprof_process_id][_lprof_thread_id] = perf_counter()
         finally:
             _lprof_lock.release()

@@ -99,4 +99,4 @@ dump_perf_stats()
 ```
 
 # License
-The code licensed under GNU General Public License V3.0, See LICENSE file for details.
+The code licensed under GNU General Public License v3.0, See LICENSE file for details.

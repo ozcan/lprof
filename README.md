@@ -97,3 +97,6 @@ dump_perf_stats()
    38 	     1 	0.00006151 	        t.join()
    39 	     1 	0.00002191 	        t2.join()
 ```
+
+# License
+The code licensed under GNU General Public License V3.0, See LICENSE file for details.

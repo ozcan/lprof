@@ -1,8 +1,8 @@
 # lprof
 Experimental line profiler library for Python 3 that can be used to profile apps with multithreading/multiprocessing implemented in pure Python.
 
-# Why?
-I have been using Robert Kern's line_profiler library to profile my code for a long time. Which is a solid library but the only downside is, Unfortunately it does only work on the main thread. In order to profile my code, I had to modify my source code to turn it to single threaded one forth and back multiple times. In the end I decided to take a shot and implement my own simple library that can be used with multithreading/multiprocessing code.
+# Motivation
+I have been using Robert Kern's line_profiler library to profile my code for a long time. Which is a solid library but the only downside is, Unfortunately it does only work on the main thread. In order to profile my code, I had to modify my source code to turn it to single threaded one. In the end I decided to experiment with Abstract Source Trees and implement my own simple library that can be used with multithreading/multiprocessing code.
 
 # How does it work?
 `@profile` decorator injects code to beginning of the profiled function. The injected code defines timer and stat dictionaries bound to module scope, also defines a `tick()` function which later gets called after each line.
